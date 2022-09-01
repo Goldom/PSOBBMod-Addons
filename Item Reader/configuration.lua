@@ -331,7 +331,7 @@ local function ConfigurationWindow(configuration)
             if _configuration.floor.EnableFilters then
                 if imgui.TreeNodeEx("Filter Drops") then
                     imgui.Text("Non-Rares")
-                    if imgui.Checkbox("Hide <40h Weapons", _configuration.floor.filter.HideLowHitWeapons) then
+                    if imgui.Checkbox("Hide 0h Weapons", _configuration.floor.filter.HideLowHitWeapons) then
                         _configuration.floor.filter.HideLowHitWeapons = not _configuration.floor.filter.HideLowHitWeapons
                         _configuration.floor.changed = true
                         this.changed = true
