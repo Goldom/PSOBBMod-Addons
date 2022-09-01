@@ -660,13 +660,13 @@ local function PresentTargetMonster(monster)
 
         -- Show target enemies stats if feature enabled
         if options.targetShowMonsterStats then
-            lib_helpers.Text(true, "[ATP: %i, DFP: %i, MST: %i, ATA: %i, EVP: %i, LCK: %i]",
-                                   monster.Atp, monster.Dfp, monster.Mst, monster.Ata, monster.Evp, monster.Lck)
-            lib_helpers.Text(true, "[EFR: %i, EIC: %i, ETH: %i, EDK: %i, ELT: %i, ESP: %i]",
-                                   monster.Efr, monster.Eic, monster.Eth, monster.Edk, monster.Elt, monster.Esp)
+            lib_helpers.Text(true, "F:%i I:%i T:%i",
+                                   monster.Efr, monster.Eic, monster.Eth)
+            lib_helpers.Text(true, "D:%i L:%i S:%i",
+                                   monster.Edk, monster.Elt, monster.Esp)
         end
 
-        -- Draw enemy HP bar
+  --[[      -- Draw enemy HP bar
         lib_helpers.imguiProgressBar(true, mHP/mHPMax, -1.0, imgui.GetFontSize(), lib_helpers.HPToGreenRedGradient(mHP/mHPMax), nil, mHP)
 
         -- Show J/Z status and Frozen, Confuse, or Paralyzed status
@@ -696,7 +696,7 @@ local function PresentTargetMonster(monster)
 
             imgui.NextColumn()
         end
-
+--]]
         -- Determine if we have v501/v502 equip for it's bonuses
         local inventory = lib_items.GetInventory(lib_items.Me)
         local itemCount = table.getn(inventory.items)
@@ -853,7 +853,7 @@ local function PresentTargetMonsterWindow()
             return
         end
     else
-        targetWindowTimeOut = 90
+        targetWindowTimeOut = 30
         targetCache = monster
     end
 
