@@ -162,10 +162,10 @@ end
 local function _ParseItemMag(item)
     item.mag.color = item.data[16]
 
-    item.mag.def = (bit.lshift(item.data[6],  8) + item.data[5] ) / 100.0
-    item.mag.pow = (bit.lshift(item.data[8],  8) + item.data[7] ) / 100.0
-    item.mag.dex = (bit.lshift(item.data[10], 8) + item.data[9] ) / 100.0
-    item.mag.mind = (bit.lshift(item.data[12], 8) + item.data[11]) / 100.0
+    item.mag.def = math.floor((bit.lshift(item.data[6],  8) + item.data[5] ) / 100.0)
+    item.mag.pow = math.floor((bit.lshift(item.data[8],  8) + item.data[7] ) / 100.0)
+    item.mag.dex = math.floor((bit.lshift(item.data[10], 8) + item.data[9] ) / 100.0)
+    item.mag.mind = math.floor((bit.lshift(item.data[12], 8) + item.data[11]) / 100.0)
 
     if bit.band(item.data[15], 1) ~= 0 then
         item.mag.pbC = bit.band(item.data[4], 7)
