@@ -7,6 +7,12 @@
 * Remove grind numbers
 * Round mag stats down to full levels [1/2]
 
+## Monster Reader
+### init.lua
+* Compacted/removed some data by personal preference
+### monsters.lua
+* Text color changes
+
 ## solylib
 ### items.lua
 * Round mag stats down to full levels [2/2]
