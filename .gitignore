@@ -1,6 +1,5 @@
 ﻿/.vs
 /.vscode
-/*/options.lua
 
 /Item Reader/inventory/*
 !/Item Reader/inventory/.keep
