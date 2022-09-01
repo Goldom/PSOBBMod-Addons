@@ -18,3 +18,5 @@
 * Round mag stats down to full levels [2/2]
 ### items_configuration.lua
 * Revert to old text colors
+
+Also: includes my personal options.lua in each folder for the sake of my own convenience. If you want to use this fork with your own options, make sure you don't overwrite your copies.
