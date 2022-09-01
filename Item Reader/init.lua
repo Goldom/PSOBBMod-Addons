@@ -429,16 +429,30 @@ local function PrependMultifloorStringToItem(item)
 end
 
 local function TrimString(text, length)
-    -- default to "???" to prevent crashing for techniques when doing Alt+Backspace
-    text = text or "???"
     local result = text;
     if length > 0 then
         result = string.sub(text, 0, length)
-        local strLength = string.len(text)
-        strLength = strLength - 3
-        if length < strLength then
-            result = result .. "..."
-        end
+		local strLength = string.len(text)
+
+		while strLength < length - 5 do
+			result = result .. " "
+			strLength = strLength + 1
+		end
+		
+    end
+    return result
+end
+
+local function TrimWeapon(text, length)
+    local result = text;
+    if length > 0 then
+        result = string.sub(text, 0, length)
+		local strLength = string.len(text)
+
+		while strLength < length do
+			result = result .. " "
+			strLength = strLength + 1
+		end
     end
     return result
 end
@@ -463,7 +477,7 @@ local function writeArmorStats(item, floor)
     end
     result = result .. TextCWrapper(false, statColor, "%i", item.armor.dfpMax)
 
-    result = result .. TextCWrapper(false, lib_items_cfg.white, " | ")
+    result = result .. TextCWrapper(false, lib_items_cfg.white, "][")
 
     if item.armor.evp == 0 then
         statColor = lib_items_cfg.grey
@@ -496,7 +510,7 @@ local function ProcessWeapon(item, floor)
         elseif floor and options.floor.EnableFilters and options.floor.filter.HideLowHitWeapons then
             show_item = false
             -- Hide weapon drops with less then 40h untekked
-            if item.weapon.stats[6] >= 40 then
+            if item.weapon.stats[6] >= 1 then
                 show_item = true
             end
         end
@@ -530,44 +544,27 @@ local function ProcessWeapon(item, floor)
             end
         end
 
-        if item.weapon.wrapped or item.weapon.untekked then
-            result = result .. TextCWrapper(false, lib_items_cfg.white, "[")
-            if item.weapon.wrapped and item.weapon.untekked then
-                result = result .. TextCWrapper(false, lib_items_cfg.weaponUntekked, "W|U")
-            elseif item.weapon.wrapped then
-                result = result .. TextCWrapper(false, lib_items_cfg.weaponUntekked, "W")
-            elseif item.weapon.untekked then
-                result = result .. TextCWrapper(false, lib_items_cfg.weaponUntekked, "U")
-            end
-            result = result .. TextCWrapper(false, lib_items_cfg.white, "] ")
-        end
-
         if item.weapon.isSRank then
             result = result .. TextCWrapper(false, lib_items_cfg.weaponSRankTitle, "S-RANK ")
             result = result .. TextCWrapper(false, lib_items_cfg.weaponSRankName, "%s ", item.name)
             result = result .. TextCWrapper(false, lib_items_cfg.weaponSRankCustomName, "%s ", item.weapon.nameSrank)
 
-            if item.weapon.grind > 0 then
-                 result = result .. TextCWrapper(false, lib_items_cfg.weaponGrind, "+%i ", item.weapon.grind)
-            end
-
-            if item.weapon.specialSRank ~= 0 then
+                        if item.weapon.specialSRank ~= 0 then
                 result = result .. TextCWrapper(false, lib_items_cfg.white, "[")
                 result = result .. TextCWrapper(false, lib_items_cfg.weaponSRankSpecial[item.weapon.specialSRank], lib_unitxt.GetSRankSpecialName(item.weapon.specialSRank))
                 result = result .. TextCWrapper(false, lib_items_cfg.white, "] ")
             end
         else
-            result = result .. TextCWrapper(false, nameColor, "%s ", TrimString(item.name, options.itemNameLength))
-
-            if item.weapon.grind > 0 then
-                result = result .. TextCWrapper(false, lib_items_cfg.weaponGrind, "+%i ", item.weapon.grind)
-            end
+            
 
             if item.weapon.special ~= 0 then
-                result = result .. TextCWrapper(false, lib_items_cfg.white, "[")
-                result = result .. TextCWrapper(false, lib_items_cfg.weaponSpecial[item.weapon.special + 1], lib_unitxt.GetSpecialName(item.weapon.special))
+				result = result .. TextCWrapper(false, nameColor, "%s ", TrimWeapon(item.name, options.itemNameLength - 9))
+				result = result .. TextCWrapper(false, lib_items_cfg.white, "[")
+				result = result .. lib_helpers.TextC(false, lib_items_cfg.weaponSpecial[item.weapon.special + 1], TrimString(lib_unitxt.GetSpecialName(item.weapon.special), 1))
                 result = result .. TextCWrapper(false, lib_items_cfg.white, "] ")
-            end
+			else
+				result = result .. TextCWrapper(false, nameColor, "%s ", TrimWeapon(item.name, options.itemNameLength - 5))
+			end
 
             result = result .. TextCWrapper(false, lib_items_cfg.white, "[")
             for i=2,5,1 do
@@ -830,7 +827,7 @@ local function ProcessMag(item, fromMagWindow)
     if item_cfg ~= nil and item_cfg[1] ~= 0 then
         nameColor = item_cfg[1]
     end
-    result = result .. TextCWrapper(false, nameColor, "%s ", TrimString(item.name, options.itemNameLength))
+    result = result .. TextCWrapper(false, nameColor, "%s ", TrimString(item.name, 5))
 
     local timerColor = lib_items_cfg.white
     for i=1,table.getn(lib_items_cfg.magFeedTimer),2 do
@@ -848,13 +845,13 @@ local function ProcessMag(item, fromMagWindow)
         or (fromMagWindow and not options.mags.hideMagStats)
     then
         result = result .. TextCWrapper(false, lib_items_cfg.white, "[")
-        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%.2f", item.mag.def)
+        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%d", item.mag.def)
         result = result .. TextCWrapper(false, lib_items_cfg.white, "/")
-        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%.2f", item.mag.pow)
+        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%d", item.mag.pow)
         result = result .. TextCWrapper(false, lib_items_cfg.white, "/")
-        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%.2f", item.mag.dex)
+        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%d", item.mag.dex)
         result = result .. TextCWrapper(false, lib_items_cfg.white, "/")
-        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%.2f", item.mag.mind)
+        result = result .. TextCWrapper(false, lib_items_cfg.magStats, "%d", item.mag.mind)
         result = result .. TextCWrapper(false, lib_items_cfg.white, "] ")
     end
 

@@ -17,11 +17,11 @@ local itemEquipped = 0xFFFFFFFF
 
 -- WEAPON
 local weaponUntekked = 0xFFFF0000
-local weaponName = 0xFFB060B0
+local weaponName = 0xFFD2A0D8
 local weaponGrind = 0xFF28CC66
 local weaponSRankTitle = 0xFFFF0000
 local weaponSRankName = 0xFF2D98B7
-local weaponSRankCustomName = 0xFFB060B0
+local weaponSRankCustomName = 0xFFD2A0D8
 local weaponSRankSpecial =
 {
     0xFFFF2031, -- Jellen
@@ -120,12 +120,12 @@ local weaponHit =
 }
 
 -- ARMOR (Frame and Barrier)
-local armorName = 0xFFB060B0
+local armorName = 0xFF678FE1
 local armorStats = 0xFF28CC66
 local armorSlots = 0xFFFFFF00
 
 -- ARMOR (Unit)
-local unitName = 0xFFB060B0
+local unitName = 0xFF678FE1
 local unitKills = 0xFFFFFF00
 
 -- MAG
@@ -142,15 +142,15 @@ local magFeedTimer =
 }
 
 -- TOOL
-local toolName = 0xFFB060B0
+local toolName = 0xFF47DC3C
 local toolAmount = 0xFF28CC66
 
 -- TECHNIQUE
-local techName = 0xFFB060B0
+local techName = 0xFFA0D8A4
 local techLevel = 0xFF28CC66
 
 -- MESETA
-local mesetaName = 0xFFB060B0
+local mesetaName = 0xFFD2A0D8
 local mesetaAmount = 0xFFFFFF00
 
 return
