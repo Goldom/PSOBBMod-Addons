@@ -13,6 +13,7 @@ return
     hideMagPBs = true,
     hideMagColor = false,
     itemNameLength = 20,
+    magNameLength = 8,
     server = 3,
     updateThrottle = 0,
     aio = {

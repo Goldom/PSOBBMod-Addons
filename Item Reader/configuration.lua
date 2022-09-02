@@ -71,14 +71,21 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.itemNameLength = imgui.InputInt("Max Item Name Length", _configuration.itemNameLength)
             imgui.PopItemWidth()
             if success then
                 this.changed = true
             end
+			
+			imgui.PushItemWidth(110)
+            success, _configuration.magNameLength = imgui.InputInt("Max Mag Name Length", _configuration.magNameLength)
+            imgui.PopItemWidth()
+            if success then
+                this.changed = true
+            end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.updateThrottle = imgui.InputInt("Delay Update (seconds)", _configuration.updateThrottle)
             imgui.PopItemWidth()
             if success then
@@ -167,7 +174,7 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.aio.X = imgui.InputInt("X", _configuration.aio.X)
             imgui.PopItemWidth()
             if success then
@@ -176,7 +183,7 @@ local function ConfigurationWindow(configuration)
             end
 
             imgui.SameLine(0, 38)
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.aio.Y = imgui.InputInt("Y", _configuration.aio.Y)
             imgui.PopItemWidth()
             if success then
@@ -184,7 +191,7 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.aio.W = imgui.InputInt("Width", _configuration.aio.W)
             imgui.PopItemWidth()
             if success then
@@ -193,7 +200,7 @@ local function ConfigurationWindow(configuration)
             end
 
             imgui.SameLine(0, 10)
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.aio.H = imgui.InputInt("Height", _configuration.aio.H)
             imgui.PopItemWidth()
             if success then
@@ -287,7 +294,7 @@ local function ConfigurationWindow(configuration)
 
             if _configuration.floor.ShowMultiFloor then
                 if imgui.TreeNodeEx("Multi-floor options") then
-                    imgui.PushItemWidth(100)
+                    imgui.PushItemWidth(110)
                     local enteredValue
                     success, enteredValue = imgui.InputInt("Brightness percent for other floors", _configuration.floor.OtherFloorsBrightnessPercent)
                     if success then
@@ -299,7 +306,7 @@ local function ConfigurationWindow(configuration)
                     end
                     imgui.PopItemWidth()
 
-                    imgui.PushItemWidth(100)
+                    imgui.PushItemWidth(110)
                     local otherFloorIndicator
                     success, otherFloorIndicator = imgui.InputText("Prepend indicator string for other floors", _configuration.floor.OtherFloorsPrependString, 32)
                     if success then
@@ -514,7 +521,7 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.floor.X = imgui.InputInt("X", _configuration.floor.X)
             imgui.PopItemWidth()
             if success then
@@ -523,7 +530,7 @@ local function ConfigurationWindow(configuration)
             end
 
             imgui.SameLine(0, 38)
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.floor.Y = imgui.InputInt("Y", _configuration.floor.Y)
             imgui.PopItemWidth()
             if success then
@@ -531,7 +538,7 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.floor.W = imgui.InputInt("Width", _configuration.floor.W)
             imgui.PopItemWidth()
             if success then
@@ -540,7 +547,7 @@ local function ConfigurationWindow(configuration)
             end
 
             imgui.SameLine(0, 10)
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.floor.H = imgui.InputInt("Height", _configuration.floor.H)
             imgui.PopItemWidth()
             if success then
@@ -651,7 +658,7 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.mags.X = imgui.InputInt("X", _configuration.mags.X)
             imgui.PopItemWidth()
             if success then
@@ -660,7 +667,7 @@ local function ConfigurationWindow(configuration)
             end
 
             imgui.SameLine(0, 38)
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.mags.Y = imgui.InputInt("Y", _configuration.mags.Y)
             imgui.PopItemWidth()
             if success then
@@ -668,7 +675,7 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.mags.W = imgui.InputInt("Width", _configuration.mags.W)
             imgui.PopItemWidth()
             if success then
@@ -677,7 +684,7 @@ local function ConfigurationWindow(configuration)
             end
 
             imgui.SameLine(0, 10)
-            imgui.PushItemWidth(100)
+            imgui.PushItemWidth(110)
             success, _configuration.mags.H = imgui.InputInt("Height", _configuration.mags.H)
             imgui.PopItemWidth()
             if success then

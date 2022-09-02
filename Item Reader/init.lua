@@ -29,6 +29,7 @@ if optionsLoaded then
     options.hideMagPBs                = lib_helpers.NotNilOrDefault(options.hideMagPBs, false)
     options.hideMagColor              = lib_helpers.NotNilOrDefault(options.hideMagColor, false)
     options.itemNameLength            = lib_helpers.NotNilOrDefault(options.itemNameLength, 0)
+	options.magNameLength            = lib_helpers.NotNilOrDefault(options.magNameLength, 0)
     options.updateThrottle            = lib_helpers.NotNilOrDefault(options.updateThrottle, 0)
     options.server                    = lib_helpers.NotNilOrDefault(options.server, 1)
 
@@ -149,6 +150,7 @@ else
         hideMagPBs = false,
         hideMagColor = false,
         itemNameLength = 0,
+		magNameLength = 0,
         updateThrottle = 0,
         server = 1,
         aio = {
@@ -271,6 +273,7 @@ local function SaveOptions(options)
         io.write(string.format("    hideMagPBs = %s,\n", tostring(options.hideMagPBs)))
         io.write(string.format("    hideMagColor = %s,\n", tostring(options.hideMagColor)))
         io.write(string.format("    itemNameLength = %s,\n", tostring(options.itemNameLength)))
+		io.write(string.format("    magNameLength = %s,\n", tostring(options.magNameLength)))
         io.write(string.format("    server = %s,\n", tostring(options.server)))
         io.write(string.format("    updateThrottle = %i,\n", tostring(options.updateThrottle)))
         io.write(string.format("    aio = {\n"))
@@ -830,7 +833,7 @@ local function ProcessMag(item, fromMagWindow)
     if item_cfg ~= nil and item_cfg[1] ~= 0 then
         nameColor = item_cfg[1]
     end
-    result = result .. TextCWrapper(false, nameColor, "%s ", TrimString(item.name, 5))
+    result = result .. TextCWrapper(false, nameColor, "%s ", TrimString(item.name, options.magNameLength))
 
     local timerColor = lib_items_cfg.white
     for i=1,table.getn(lib_items_cfg.magFeedTimer),2 do

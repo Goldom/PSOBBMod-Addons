@@ -8,6 +8,9 @@ return
     showMonsterID = false,
 
     mhpEnableWindow = true,
+    mhpHideWhenMenu = true,
+    mhpHideWhenSymbolChat = true,
+    mhpHideWhenMenuUnavailable = true,
     mhpChanged = false,
     mhpAnchor = 6,
     mhpX = -52,
@@ -20,10 +23,10 @@ return
     mhpTransparentWindow = true,
 
     targetEnableWindow = true,
-    targetChanged = true,
+    targetChanged = false,
     targetAnchor = 3,
     targetX = 40,
-    targetY = -62,
+    targetY = -60,
     targetW = 240,
     targetH = 105,
     targetNoTitleBar = "NoTitleBar",
@@ -35,5 +38,14 @@ return
     targetShowMonsterStats = true,
     targetShowAccuracyAssist = false,
     targetAccuracyThreshold = 90,
-    targetShowActivationRates = 2,
+    targetEnableActivationRates = false,
+    targetEnableActivationRateItems = {
+        hell = nil,
+        dark = nil,
+        blizzard = nil,
+        arrest = nil,
+        seize = nil,
+        chaos = nil,
+        havoc = nil,
+    },
 }
